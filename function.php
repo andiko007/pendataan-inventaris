@@ -2,7 +2,14 @@
 session_start();
 
 //membuat koneksi ke database
-$conn = mysqli_connect("localhost","root", "","inventaris");
+// :3307 dihapus, atau sesuain sma xampp
+$hostname = "localhost:3307";
+$username = "root";
+$password = "";
+$db = "inventaris";
+
+// Membuat koneksi
+$conn = new mysqli($hostname, $username, $password, $db);
 
 
 //menambah barang baru
