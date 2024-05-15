@@ -91,35 +91,34 @@ require 'cek.php';
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             <?php
-                                            $ambilsemuadatalist = mysqli_query($conn,"select * from list");
-                                            $i =1;
-                                            while($data=mysqli_fetch_array($ambilsemuadatalist)){
-                                                $namabarang = $data['namabarang'];
-                                                $deskripsi = $data['deskripsi'];
-                                                $stock = $data['stock'];
-                                                $idb = $data['idbarang'];
+                                                    $ambilsemuadatalist = mysqli_query($conn, "SELECT * FROM list");
+                                                    $i = 1;
+                                                    while ($data = mysqli_fetch_array($ambilsemuadatalist)) {
+                                                        $namabarang = $data['namabarang'];
+                                                        $deskripsi = $data['deskripsi'];
+                                                        $stock = $data['stock'];
+                                                        $idb = $data['idbarang'];
+                                                    ?>
 
-                                            ?>
+                                                    <tr>
+                                                        <td><?= $i++; ?></td>
+                                                        <td><?= $namabarang; ?></td>
+                                                        <td><?= $deskripsi; ?></td>
+                                                        <td><?= $stock; ?></td>
+                                                        <td>
+                                                            <img src="barcode.php?text=<?= urlencode($idb); ?>" alt="Barcode for <?= htmlspecialchars($i); ?>" />
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?= $idb; ?>">
+                                                                Edit
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?= $idb; ?>">
+                                                                Delete
+                                                            </button>
+                                                        </td>
+                                                    </tr>
 
-                                            <tr>
-                                                <td><?=$i++;?></td>
-                                                <td><?=$namabarang;?></td>
-                                                <td><?=$deskripsi;?></td>
-                                                <td><?=$stock;?></td>
-                                                <td>
-                                                    <img alt="barcode.png" src="barcode.php?codetype=code128&size=40&text=testing&print=true" />                                                   
-                                                </td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#edit<?=$idb;?>">
-                                                        Edit
-                                                    </button>
-                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete<?=$idb;?>">
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
 
                                                <!-- Edit Modal -->
                                                 <div class="modal fade" id="edit<?=$idb;?>">
